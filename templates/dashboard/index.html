@@ -1,0 +1,90 @@
+{% extends './base.html' %}
+
+
+{% block inner-content %}
+<section class="grid w-full grid-cols-1 gap-4 mt-4 xl:grid-cols-2 2xl:grid-cols-3">
+
+  <h3 class="font-bold mb-1 col-span-full text-2xl">Overview</h3>
+
+  <div class="items-center justify-between p-4 border border-gray-200 rounded-lg shadow-sm sm:flex sm:p-6">
+    <div class="w-full">
+      <h3 class=" font-normal text-2xl">Total Number of Transaction</h3>
+      <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl">2,340</span>
+      <p class="flex items-center text-base font-normal text-gray-500">
+        <span class="flex items-center mr-1.5 text-sm text-green-500">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true">
+            <path clip-rule="evenodd" fill-rule="evenodd"
+              d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z">
+            </path>
+          </svg>
+          12.5%
+        </span>
+        Since last month
+      </p>
+    </div>
+    <div class="w-full" id="new-products-chart"></div>
+  </div>
+  <div class="items-center justify-between p-4 border border-gray-200 rounded-lg shadow-sm sm:flex">
+    <div class="w-full">
+      <h3 class="text-2xl font-normal">Total Number Of Users</h3>
+      <span class="text-2xl font-bold leading-none text-gray-900 sm:text-3xl">2,340</span>
+      <p class="flex items-center text-base font-normal text-gray-500">
+        <span class="flex items-center mr-1.5 text-sm text-green-500">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true">
+            <path clip-rule="evenodd" fill-rule="evenodd"
+              d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z">
+            </path>
+          </svg>
+          3,4%
+        </span>
+        Since last month
+      </p>
+    </div>
+    <div class="w-full" id="week-signups-chart"></div>
+  </div>
+
+</section>
+
+
+<section class="w-full border border-gray-200 rounded-lg shadow ">
+
+  <div class="flex items-center justify-between p-5">
+    <div>
+      <h3>Conversion Rate to Naira</h3>
+    </div>
+
+    <div class="">
+      <button id="dropdownButton" data-dropdown-toggle="dropdown"
+        class="inline-block focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg text-sm p-1.5"
+        type="button">
+        <span class="sr-only">Open dropdown</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+          viewBox="0 0 16 3">
+          <path
+            d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+        </svg>
+      </button>
+      <!-- Dropdown menu -->
+      <div id="dropdown" class="z-10 hidden text-base list-none divide-y divide-gray-100 rounded-lg shadow w-44 ">
+        <ul class="py-2" aria-labelledby="dropdownButton">
+          <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Export
+              Data</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">Delete</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</section>
+
+{% endblock %}

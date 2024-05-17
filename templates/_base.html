@@ -1,0 +1,52 @@
+<!-- templates/_base.html -->
+
+{% load compress %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Django + Tailwind CSS + Flowbite</title>
+
+  {% compress css %}
+  <link rel="stylesheet" href="{% static 'src/output.css' %}">
+  {% endcompress %}
+
+</head>
+
+<body>
+
+  <!-- Add this -->
+  <nav class=" px-2 sm:px-4 py-2.5 border-b shadow-sm">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto bg-primary py-4">
+      <a href="/">Sellee</a>
+
+      <!-- links -->
+      <div class="flex gap-5">
+        <a href="/about" class="capitalize border-b border-transparent hover:border-purple-800 font-bold">About us</a>
+        <a href="/blog" class="capitalize border-b border-transparent hover:border-purple-800 font-bold">Blog</a>
+        <a href="/contact" class="capitalize border-b border-transparent hover:border-purple-800 font-bold">Contact Us</a>
+      </div>
+
+      <div>
+        <a href="{% url 'account_login' %}" class="inline-block rounded-full px-10 p-2 bg bg-gradient-to-t from-violet-600 to-purple-800 text-white">
+          Login
+        </a>
+      </div>
+    </div>
+  </nav>
+  <!-- End of new HTML -->
+
+  <div class="">
+    {% block content %}
+    {% endblock content %}
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+</body>
+
+</html>

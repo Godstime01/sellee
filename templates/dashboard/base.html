@@ -1,0 +1,56 @@
+<!-- templates/_base.html -->
+
+{% load compress %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Django + Tailwind CSS + Flowbite</title>
+
+  {% compress css %}
+  <link rel="stylesheet" href="{% static 'src/output.css' %}">
+  {% endcompress %}
+
+</head>
+
+<body class="bg-purple-950">
+
+  {% include './partials/navbar.html' %}
+
+
+  <section class='flex overflow-hidden pt-16 text-white'>
+    {% include './partials/sidebar.html' %}
+
+    <div class="relative w-full h-full overflow-y-auto lg:ml-[18rem] px-4 pt-6">
+
+      <div class="flex justify-between items-center my-3 text-white">
+        {% if request.user.is_superuser %}
+        <h3 class="capitalize">Admin management system overview</h3>
+        {% else %}
+        <h3>User management system overview</h3>
+        {% endif %}
+
+        <div>
+          <span class="font-bold">Accounts </span>
+          <span class="capitalize"> | {{request.user}}</span>
+        </div>
+      </div>
+
+
+      <div class="space-y-8">
+        {% block inner-content %}
+      {% endblock %}
+      </div>
+
+    </div>
+  </section>
+
+
+</body>
+
+</html>
