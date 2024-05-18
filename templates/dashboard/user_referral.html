@@ -1,0 +1,29 @@
+{% extends './base.html' %}
+
+
+{% block inner-content %}
+<section class="grid w-full grid-cols-1 gap-4 mt-4 xl:grid-cols-2 2xl:grid-cols-3">
+
+  <div class="flex justify-between items-center col-span-full mb-3">
+    <h3 class="font-bold mb-1  text-2xl">Referral</h3>
+
+    </div>
+  </div>
+
+  <div class="justify-between p-4 border border-gray-200 rounded-lg shadow-sm sm:flex flex-col sm:p-6 col-span-full">
+
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-3">
+
+      <div>
+        <h3 class="text-sm font-medium bg-pink-600 text-white rounded-full inline p-2">Referral Link</h3>
+        <p class="font-extrabold text-xl mt-5 italic">{{request.get_host}}{{referral_link}}</p>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+
+{% endblock %} 

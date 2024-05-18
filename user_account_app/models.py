@@ -1,6 +1,7 @@
+from typing import Iterable
 from django.db import models
 from django.contrib.auth import get_user_model
-from .utils import generate_user_referral_link
+from django.urls import reverse
 
 USER = get_user_model()
 
@@ -28,7 +29,7 @@ class UserBillingInformation(models.Model):
 class UserProfile(models.Model):
     image = models.ImageField(upload_to='profile_image/', default='user_profile.png')
     user = models.OneToOneField(USER, on_delete=models.CASCADE)
-    unique_referral_link = models.URLField(null = True)
+    unique_referral_link = models.CharField(max_length=500, null = True)
     
     def __str__(self): return f'{self.user.username} Profile'
 
@@ -42,7 +43,13 @@ def user_created_handler(sender, instance, created, *args, **kwargs):
 
 
     if created and not instance.is_superuser:
+
+
+        user_link = reverse('account_signup', kwargs={'username': instance.username})
+
+        profile = UserProfile.objects.create(user = instance, unique_referral_link = user_link)
         
+        profile.save()
         
         wallet = UserWallet.objects.create(user = instance)
         

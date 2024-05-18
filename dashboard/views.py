@@ -4,6 +4,8 @@ from django.http.response import HttpResponse as HttpResponse
 from django.views.generic import TemplateView, View, ListView
 from django.views.generic.edit import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
+
 from .forms import CardCreationForm, CoinCreationForm
 from .models import Card, Coin
 
@@ -47,4 +49,15 @@ class DashboardUserWallet(LoginRequiredMixin,TemplateView):
 
         context_data = super().get_context_data(**kwargs) 
         context_data['wallet_info'] = user_wallet_info
+        return context_data
+    
+class DashboardUserReferalView(LoginRequiredMixin, TemplateView):
+    template_name  = 'dashboard/user_referral.html'
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        user_profile = models.UserProfile.objects.get(user = self.request.user)
+
+        context_data = super().get_context_data(**kwargs)
+
+        context_data['referral_link'] = user_profile.unique_referral_link
         return context_data

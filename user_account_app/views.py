@@ -1,16 +1,12 @@
 from allauth.account import views as allauth_views
 from .forms import AccountRegistrationForm
-from .models import Referrals, UserProfile
-from .utils import generate_user_referral_link
-from django.dispatch import Signal
+from .models import Referrals
+
 
 
 class AccountRegistionView(allauth_views.SignupView):
+    form_class = AccountRegistrationForm
     
-    def form_valid(self, form):
-        # Create a custom signal class and signal to create user profile 
-
-        return super().form_valid(form)
 
 class ReferredAccountCreationView(allauth_views.SignupView):
     form_class = AccountRegistrationForm
