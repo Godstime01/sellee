@@ -1,0 +1,45 @@
+{% extends './base.html' %}
+
+
+{% block inner-content %}
+<section class="grid w-full grid-cols-1 gap-4 mt-4 xl:grid-cols-2 2xl:grid-cols-3">
+
+  <div class="flex justify-between items-center col-span-full mb-3">
+    <h3 class="font-bold mb-1  text-2xl">Wallet</h3>
+
+    </div>
+  </div>
+
+  <div class="justify-between p-4 border border-gray-200 rounded-lg shadow-sm sm:flex flex-col sm:p-6 col-span-full">
+
+    <div class="flex justify-between items-center pb-9">
+        <h3 class="font-bold">Wallet</h3>
+        <p>
+            <a href="" class="rounded-full inline-block w-full px-10 p-2.5 bg-white text-purple-700">Withdraw funds</a>
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p">
+      <div>
+        <h3 class="text-sm font-medium bg-pink-600 text-white rounded-full inline p-2">Total Earnings</h3>
+        <p class="font-extrabold text-6xl mt-2 italic">1000</p>
+        <small>
+            Please note that's the total sum of transaction here on Sellee
+        </small>
+      </div>
+
+      <div>
+        <h3 class="text-sm font-medium bg-pink-600 text-white rounded-full inline p-2">Balance</h3>
+        <p class="font-extrabold text-6xl mt-2 italic">{{wallet_info.balance}}</p>
+        <small>
+            Please note this the current balance amount left in your wallet
+        </small>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+
+{% endblock %}

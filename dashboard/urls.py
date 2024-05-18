@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from . import views
 
 urlpatterns = [
+    path('wallet', views.DashboardUserWallet.as_view(), name = 'user_wallet'),
     path(
         "users/",
         TemplateView.as_view(template_name="dashboard/users.html"),

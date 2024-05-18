@@ -8,6 +8,12 @@
 
             <div class="flex items-center">
 
+                {% if not request.user.is_superuser %}
+                <button class="inline-block rounded-full px-10 p-2 bg bg-gradient-to-t from-violet-600 to-purple-800 text-white">
+                    Trade card
+                </button>
+                {% endif %}
+
                 <!-- search -->
                 <form action="/search" method="GET" class="hidden lg:block lg:pl-3.5">
                     <label for="topbar-search" class="sr-only">Search</label>

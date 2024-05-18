@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # "django.contrib.sites",
 
     "djmoney",
     # my apps
@@ -131,3 +132,5 @@ STATICFILES_FINDERS = (
 )
 
 LOGIN_REDIRECT_URL = 'user_dashboard'
+
+SITE_ID = 1
