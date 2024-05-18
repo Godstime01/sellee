@@ -8,8 +8,12 @@ USER = get_user_model()
 
 # Create your models here.
 class Referrals(models.Model):
-    referrer = models.ForeignKey(USER, related_name='referrer', on_delete=models.CASCADE)
-    refferee = models.ForeignKey(USER, related_name='referree', on_delete=models.CASCADE)
+    referrer = models.ForeignKey(
+        USER, related_name="referrer", on_delete=models.CASCADE
+    )
+    refferee = models.ForeignKey(
+        USER, related_name="referree", on_delete=models.CASCADE
+    )
     date = models.DateTimeField(auto_now_add=True)
 
     def calculate_referral_bonus(self):
@@ -19,7 +23,7 @@ class Referrals(models.Model):
 
 class UserWallet(models.Model):
     user = models.OneToOneField(USER, on_delete=models.CASCADE)
-    balance = models.DecimalField(max_digits=16, decimal_places=2, default = 0)
+    balance = models.DecimalField(max_digits=16, decimal_places=2, default=0)
 
 
 class UserBillingInformation(models.Model):
@@ -27,31 +31,31 @@ class UserBillingInformation(models.Model):
 
 
 class UserProfile(models.Model):
-    image = models.ImageField(upload_to='profile_image/', default='user_profile.png')
+    image = models.ImageField(upload_to="profile_image/", default="user_profile.png")
     user = models.OneToOneField(USER, on_delete=models.CASCADE)
-    unique_referral_link = models.CharField(max_length=500, null = True)
-    
-    def __str__(self): return f'{self.user.username} Profile'
+    unique_referral_link = models.CharField(max_length=500, null=True)
+
+    def __str__(self):
+        return f"{self.user.username} Profile"
 
 
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 
-@receiver(post_save, sender = USER)
+@receiver(post_save, sender=USER)
 def user_created_handler(sender, instance, created, *args, **kwargs):
-
 
     if created and not instance.is_superuser:
 
+        user_link = reverse("account_signup", kwargs={"username": instance.username})
 
-        user_link = reverse('account_signup', kwargs={'username': instance.username})
+        profile = UserProfile.objects.create(
+            user=instance, unique_referral_link=user_link
+        )
 
-        profile = UserProfile.objects.create(user = instance, unique_referral_link = user_link)
-        
         profile.save()
-        
-        wallet = UserWallet.objects.create(user = instance)
-        
+
+        wallet = UserWallet.objects.create(user=instance)
+
         wallet.save()
-        
